@@ -5,3 +5,7 @@ authors:
   - Matias Garcia Isaia <mgarcia@manas.com.ar>
 
 license: MIT
+
+dependencies:
+  crystal_lib:
+    github: manastech/crystal_lib

@@ -26,7 +26,7 @@ TODO: Write usage instructions here
 
 ## Development
 
-TODO: Write development instructions here
+Run `make` to get the library built, or `make spec` to run the specs.
 
 ## Contributing
 
