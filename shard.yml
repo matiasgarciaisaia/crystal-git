@@ -1,0 +1,7 @@
+name: crystal-git
+version: 0.1.0
+
+authors:
+  - Matias Garcia Isaia <mgarcia@manas.com.ar>
+
+license: MIT
