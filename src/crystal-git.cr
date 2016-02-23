@@ -30,6 +30,21 @@ module Git
     Oid.new oid
   end
 
+  def minimize_oid(oids, min_length = 7)
+    minimize_oid oids, min_length, do end
+  end
+
+  def minimize_oid(oids, min_length = 7)
+    if oids.is_a? Array
+      shorten = LibGit2.oid_shorten_new min_length
+      minimal_length = oids.reduce(min_length) do |memo, oid|
+        LibGit2.oid_shorten_add shorten, oid
+      end
+      oids.each { |oid| yield oid[0..minimal_length - 1] }
+      minimal_length
+    end
+  end
+
   class Oid
     def initialize(@oid = LibGit2::Oid.new : LibGit2::Oid)
     end
