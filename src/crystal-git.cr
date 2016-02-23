@@ -3,6 +3,11 @@ require "./crystal-git/*"
 module Git
   LibGit2.libgit2_init
 
+  SORT_NONE = LibGit2::SortNone
+  SORT_TOPOLOGICAL = LibGit2::SortTopological
+  SORT_TIME = LibGit2::SortTime
+  SORT_REVERSE = LibGit2::SortReverse
+
   extend self
 
   def version

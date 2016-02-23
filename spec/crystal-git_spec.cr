@@ -8,7 +8,7 @@ describe Git do
     "d8786bfc974ccccccccccccccccccccccccccccc",
     "68d041ee999cb07c6496fbdd4f384095de6ca9e1"
   ]
-  
+
   it "reports libgit2's version" do
     version = Git.version
     version.should eq([0, 23, 0])
@@ -47,5 +47,12 @@ describe Git do
       "d8786bfc974c",
       "68d041ee999c"
     ])
+  end
+
+  it "exposes sorting constants" do
+    Git::SORT_NONE.should eq(0)
+    Git::SORT_TOPOLOGICAL.should eq(1)
+    Git::SORT_TIME.should eq(2)
+    Git::SORT_REVERSE.should eq(4)
   end
 end
