@@ -16,4 +16,9 @@ describe Git do
     Git.valid_full_oid?("nope").should be_false
     Git.valid_full_oid?("ce08fe4884650f067bd5703b6a59a8b3b3c99a0").should be_false
   end
+
+  it "converts hex strings to raw bytes" do
+    raw = Git.hex_to_raw("ce08fe4884650f067bd5703b6a59a8b3b3c99a09")
+    raw.to_s.should eq("ce08fe4884650f067bd5703b6a59a8b3b3c99a09")
+  end
 end
