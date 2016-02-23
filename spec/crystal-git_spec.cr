@@ -55,4 +55,53 @@ describe Git do
     Git::SORT_TIME.should eq(2)
     Git::SORT_REVERSE.should eq(4)
   end
+
+  it "prettifies messages" do
+    message = <<-MESSAGE
+Testing this whole prettify business
+
+with newlines and stuff
+# take out this line haha
+# and this one
+
+not this # one
+
+MESSAGE
+
+    clean_message = <<-MESSAGE
+Testing this whole prettify business
+
+with newlines and stuff
+
+not this # one
+
+MESSAGE
+
+    Git.prettify_message(message, true).should eq(clean_message)
+  end
+
+  it "prettifies messages with other comment chars" do
+    message = <<-MESSAGE
+Testing this whole prettify business
+
+with newlines and stuff
+# take out this line haha
+# and this one
+
+not this one
+
+MESSAGE
+
+    clean_message = <<-MESSAGE
+Testing this whole prettify business
+
+# take out this line haha
+# and this one
+
+not this one
+
+MESSAGE
+
+    Git.prettify_message(message, 'w').should eq(clean_message)
+  end
 end

@@ -50,6 +50,35 @@ module Git
     end
   end
 
+  def prettify_message(message, strip = "#")
+    strip_comments = 1
+    comment_char = '#'
+    case strip
+    when Bool
+      strip_comments = strip ? 1 : 0
+    when Char
+      comment_char = strip
+    when String
+      comment_char = strip[0]
+    end
+    cleared_message = Buf.new
+    LibGit2.message_prettify(cleared_message, message, strip_comments, comment_char.ord.to_u8)
+    cleared_message.to_s
+  end
+
+  class Buf
+    def initialize(@buf = LibGit2::Buf.new : LibGit2::Buf)
+    end
+
+    def to_s(io)
+      io.write Slice.new(@buf.ptr, @buf.size)
+    end
+
+    def to_unsafe
+      pointerof(@buf)
+    end
+  end
+
   class Oid
     def initialize(@oid = LibGit2::Oid.new : LibGit2::Oid)
     end
