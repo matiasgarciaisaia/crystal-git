@@ -19,4 +19,9 @@ module Git
     features << :nsec if features_byte & LibGit2::FeatureNsec > 0
     features
   end
+
+  def valid_full_oid?(str_oid)
+    errorcode = LibGit2.oid_fromstr(out oid, str_oid.to_s)
+    errorcode == 0
+  end
 end
