@@ -2,7 +2,7 @@ crystal-git: bindings
 	crystal build src/crystal-git.cr
 
 bindings: deps
-	crystal libs/crystal_lib/main.cr -- vendor/libgit2-bindings.cr > src/crystal-git/libgit2.cr
+	crystal run --link-flags "-L`dirname $(shell find /usr/local/Cellar/llvm* -name libclang* | head -n1)`" libs/crystal_lib/main.cr -- vendor/libgit2-bindings.cr > src/crystal-git/libgit2.cr
 
 deps:
 	mkdir -p vendor/libgit2/build && cd vendor/libgit2/build && cmake .. && cmake --build .
