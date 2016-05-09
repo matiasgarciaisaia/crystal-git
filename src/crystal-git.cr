@@ -67,7 +67,7 @@ module Git
   end
 
   class Buf
-    def initialize(@buf = LibGit2::Buf.new : LibGit2::Buf)
+    def initialize(@buf : LibGit2::Buf = LibGit2::Buf.new)
     end
 
     def to_s(io)
@@ -80,7 +80,7 @@ module Git
   end
 
   class Oid
-    def initialize(@oid = LibGit2::Oid.new : LibGit2::Oid)
+    def initialize(@oid : LibGit2::Oid = LibGit2::Oid.new)
     end
 
     def to_s(io)

@@ -2,7 +2,7 @@ require "./spec_helper"
 
 describe Git do
 
-  @@oids = [
+  oids = [
     "d8786bfc974aaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     "d8786bfc974bbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
     "d8786bfc974ccccccccccccccccccccccccccccc",
@@ -31,16 +31,16 @@ describe Git do
   end
 
   it "minimizes oids with no block given" do
-    Git.minimize_oid(@@oids).should eq(12)
+    Git.minimize_oid(oids).should eq(12)
   end
 
   it "minimizes oids with min_length" do
-    Git.minimize_oid(@@oids, 20).should eq(20)
+    Git.minimize_oid(oids, 20).should eq(20)
   end
 
   it "minimizes oids with a block given" do
     minimized_oids = [] of String
-    Git.minimize_oid(@@oids) { |oid| minimized_oids << oid }
+    Git.minimize_oid(oids) { |oid| minimized_oids << oid }
     minimized_oids.should eq([
       "d8786bfc974a",
       "d8786bfc974b",
